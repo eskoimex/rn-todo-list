@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, StatusBar,StyleSheet, TextInput,TouchableOpacity, ScrollView, FlatList, Alert, TouchableWithoutFeedback, Keyboard,} from "react-native";
+import { StyleSheet, View, FlatList, Alert, TouchableWithoutFeedback, Keyboard, TextInput } from 'react-native';
+import Header from './utils/header';
 import TodoItem from './components/readTodo';
 import AddTodo from './components/createTodo';
-import Header from './utils/header';
-import IntroText from './utils/introText';
+////////////////
 import SearchTodoItems from './utils/searchTodoItems';
 import ButtonToggleGroup from 'react-native-button-toggle-group';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {windowHeight, windowWidth} from './utils/Dimensions';
-import {colors} from './utils/Colors';
-
+// import ToggleTodoStatus from './utils/toggleButtons';
 
 export default function App() {
   const [todos, setTodos] = useState([
@@ -75,7 +72,11 @@ const [value, setValue] = useState('Light');
 
 
   const searchFilterFunction = (search) => {
+    // Check if searched search is not blank
     if (search) {
+      // Inserted search is not blank
+      // Filter the masterDataSource
+      // Update FilteredDataSource
       const newData = todos.filter(
         function (item) {
           const itemData = item.task
@@ -87,6 +88,8 @@ const [value, setValue] = useState('Light');
       setTodos(newData);
       setSearch(search);
     } else {
+      // Inserted task is blank
+      // Update FilteredDataSource with masterDataSource
       setTodos(filteredDataSource);
       setSearch(search);
     }
@@ -100,26 +103,27 @@ const [value, setValue] = useState('Light');
   }
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: colors.themeColor
-      }}
-    >
-      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
-      <View style={{ backgroundColor: colors.themeColor }}>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
         <Header />
-        <SearchTodoItems searchFilterFunction={searchFilterFunction} />
-        <IntroText />
-      </View>
-    
+        <View style={styles.content}>
 
-      <AddTodo addTodo={addTodo} />
-      <View  style={{
-        flex: 1,
-        backgroundColor: colors.background
-      }}>
-      <FlatList
+          <ButtonToggleGroup
+              highlightBackgroundColor={'blue'}
+              highlightTextColor={'white'}
+              inactiveBackgroundColor={'transparent'}
+              inactiveTextColor={'grey'}
+              values={['Active', 'Completed']}
+              value={value}
+             onSelect={getTask}
+          />
+          {/* <ToggleTodoStatus getTask={getTask} /> */}
+
+          <SearchTodoItems searchFilterFunction={searchFilterFunction} />
+
+        <AddTodo addTodo={addTodo} />
+          <View style={styles.list}>
+            <FlatList
               data =   {  
                         value === 'Active' ? 
                              todos.filter(todo => todo.isCompleted === false) 
@@ -133,22 +137,22 @@ const [value, setValue] = useState('Light');
                 <TodoItem item={item} completedTodo={completedTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
               )}
             />
-
-         <ButtonToggleGroup
-              highlightBackgroundColor={'blue'}
-              highlightTextColor={'white'}
-              inactiveBackgroundColor={'transparent'}
-              inactiveTextColor={'grey'}
-              values={['Active', 'Completed']}
-              value={value}
-             onSelect={getTask}
-          />  
-          </View>     
-    </View>
+          </View>
+        </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
-
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  content: {
+    padding: 40,
+  },
+  list: {
+    marginTop: 20,
+  },
 });
