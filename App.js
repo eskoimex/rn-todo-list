@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, StatusBar,StyleSheet, TextInput,TouchableOpacity, ScrollView, FlatList, Alert, TouchableWithoutFeedback, Keyboard,} from "react-native";
+import React, {  useState } from 'react';
+import { View,  StatusBar,StyleSheet, FlatList, Alert} from "react-native";
 import TodoItem from './components/readTodo';
 import AddTodo from './components/createTodo';
 import Header from './utils/header';
 import IntroText from './utils/introText';
 import SearchTodoItems from './utils/searchTodoItems';
 import ButtonToggleGroup from 'react-native-button-toggle-group';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {windowHeight, windowWidth} from './utils/Dimensions';
 import {colors} from './utils/Colors';
 
 
@@ -19,6 +17,7 @@ export default function App() {
 const [filteredDataSource, setFilteredDataSource] = useState(todos);
 const [search, setSearch] = useState('');
 const [value, setValue] = useState('Light');
+
 
 
   const deleteTodo = (id) => {
@@ -66,6 +65,7 @@ const [value, setValue] = useState('Light');
           ...prevTodos
         ];
       });
+     
     } else {
       Alert.alert('OOPS', 'Todo must be over 3 characters long', [
         {text: 'Understood', onPress: () => console.log('alert closed') }
@@ -94,9 +94,7 @@ const [value, setValue] = useState('Light');
 
 
   const getTask = (val) => {
-    console.log(val)
     setValue(val)
-  
   }
 
   return (
@@ -150,5 +148,20 @@ const [value, setValue] = useState('Light');
 
 
 const styles = StyleSheet.create({
+  errorMsg: {
+    flex:1,
+    marginLeft: 5,
+    marginRight: 5,
+    paddingVertical: 1,
+    width: '50%',
+    height: 15,
+    backgroundColor: 'red',
+    borderColor: 'red',
+    borderWidth: 1,
+    borderStyle: "dashed",
+    borderRadius: 1,
+    marginBottom: 5,
+    alignItems: "center",
+  },
 
 });

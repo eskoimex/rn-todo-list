@@ -13,9 +13,6 @@ export default function Header() {
     />
     <Text style={styles.title}>Todo List</Text>
 
-    <View style={styles.todoCount}>
-      <MaterialCommunityIcons name="circle" size={30} style={{ color: colors.white }} />
-    </View>
   </View>
   );
 }
@@ -34,7 +31,12 @@ const styles = StyleSheet.create({
     fontWeight:'bold'
   },
   todoCount :{
-    flexDirection: "row",
-     marginLeft:175
-  }
+     marginLeft:175,
+     backgroundColor:'#fff',
+     width: 30,
+     height: 30,
+     borderRadius: 30/2
+  },
+  
+
 });

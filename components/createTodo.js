@@ -84,7 +84,7 @@ addInput: {
   paddingBottom: 2,
   paddingLeft: 10,
   fontSize: 16,
-  color: '#fff',
+  color: '#000',
 },
 sendIcon:{
   //backgroundColor:'grey',
