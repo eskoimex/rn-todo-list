@@ -13,8 +13,9 @@ NOTE: add this line below
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle") 
 to android > app > build.gradle in order to make the icons visible.
 
-/////////////////////////*********************///////////////////////////
+
 SUMMARY OF THE PROJECT
+
 With this app you can CREATE, READ, UPDATE, DELETE AND SEARCH todos.
 
 1. All external folders and helpers are imported and run from the App.js file.
