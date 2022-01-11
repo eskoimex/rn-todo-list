@@ -15,4 +15,4 @@ With this app you can CREATE, READ, UPDATE, DELETE AND SEARCH todos.
 
 1. All external folders and helpers are imported and run from the App.js file.
 2. The Component folder consist of a simple CRUD for the todo list.
-3. The Utils folder constains constants, helpers and external components like the search module imported where needed to help the project run smothly.
+3. The Utils folder contains constants, helpers and external components like the search module imported where needed to help the application run smothly.
