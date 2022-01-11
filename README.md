@@ -9,6 +9,10 @@ To succesfully run and clone the project, these dependencies are required
 2.   npm i react-native-button-toggle-group
 3.   npm i react-native-vector-icons
 
+NOTE: add this line below
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle") 
+to android > app > build.gradle in order to make the icons visible.
+
 /////////////////////////*********************///////////////////////////
 SUMMARY OF THE PROJECT
 With this app you can CREATE, READ, UPDATE, DELETE AND SEARCH todos.
